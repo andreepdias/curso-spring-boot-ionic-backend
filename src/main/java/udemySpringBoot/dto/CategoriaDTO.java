@@ -2,13 +2,22 @@ package udemySpringBoot.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 import udemySpringBoot.domain.Categoria;
+//import javax.validation.constraints.*;
 
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
 	private Integer id;
+	
+	@Min(value=5, message="Mínimo 5 caracteres")
+	@Max(value=80, message="Máximo 80 caracteres")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String nome;
 	
 	public CategoriaDTO() {}
