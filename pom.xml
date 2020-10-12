@@ -12,7 +12,6 @@
 	<groupId>com.andre</groupId>
 	<artifactId>spring-boot-ionic-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>spring-boot-ionic-backend</name>
 	<description>Demo project for Spring Boot</description>
 
