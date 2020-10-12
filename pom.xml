@@ -17,6 +17,8 @@
 
 	<properties>
 		<java.version>11</java.version>
+	      <start-class>com.diasandre.CursoMC.CursoMcApplication</start-class>
+
 	</properties>
 
 	<dependencies>
