@@ -3,10 +3,16 @@ package udemy.services;
 import org.springframework.mail.SimpleMailMessage;
 import udemy.domain.Pedido;
 
+import javax.mail.internet.MimeMessage;
+
 public interface EmailService {
 
-    public void sendOrderConfirmation(Pedido obj);
+    void sendOrderConfirmation(Pedido obj);
 
-    public void sendEmail(SimpleMailMessage msg);
+    void sendEmail(SimpleMailMessage msg);
+
+    void sendOrderConfirmationHtmlEmail(Pedido obj);
+
+    void sendHtmlEmail(MimeMessage msg);
 
 }
