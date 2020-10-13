@@ -14,11 +14,14 @@ import org.springframework.stereotype.Service;
 import udemy.domain.Cidade;
 import udemy.domain.Cliente;
 import udemy.domain.Endereco;
+import udemy.domain.enums.Perfil;
 import udemy.domain.enums.TipoCliente;
 import udemy.dto.ClienteDTO;
 import udemy.dto.ClienteNewDTO;
 import udemy.repositories.ClienteRepository;
 import udemy.repositories.EnderecoRepository;
+import udemy.security.UserSS;
+import udemy.services.exceptions.AuthorizationException;
 import udemy.services.exceptions.DataIntegrityException;
 import udemy.services.exceptions.ObjectNotFoundException;
 
@@ -35,6 +38,12 @@ public class ClienteService {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	public Cliente find(Integer id) {
+
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())){
+			throw  new AuthorizationException("Acesso negado!");
+		}
+
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id
 				+ ", Tipo: " + Cliente.class.getName()));
