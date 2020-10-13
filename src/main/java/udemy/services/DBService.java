@@ -20,6 +20,7 @@ import udemy.domain.PagamentoComCartao;
 import udemy.domain.Pedido;
 import udemy.domain.Produto;
 import udemy.domain.enums.EstadoPagamento;
+import udemy.domain.enums.Perfil;
 import udemy.domain.enums.TipoCliente;
 import udemy.repositories.CategoriaRepository;
 import udemy.repositories.CidadeRepository;
@@ -121,16 +122,22 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "123456789", TipoCliente.PESSOA_FISICA, bCryptPasswordEncoder.encode("123"));
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "07365745908", TipoCliente.PESSOA_FISICA, bCryptPasswordEncoder.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("123456", "654897"));
+
+		Cliente cli2 = new Cliente(null, "Fernandinha", "feh@gmail.com", "07365745908", TipoCliente.PESSOA_FISICA, bCryptPasswordEncoder.encode("123"));
+		cli1.getTelefones().addAll(Arrays.asList("223456", "354897"));
+		cli2.addPerfil(Perfil.ADMIN);
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "89223130", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "89223700", cli1, c2);
+		Endereco e3 = new Endereco(null, "Avenida Rita", "690", "Sala 4", "Centro", "89223123", cli2, c2);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e1));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
 		
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
