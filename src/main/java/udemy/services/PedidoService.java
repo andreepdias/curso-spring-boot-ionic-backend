@@ -4,16 +4,19 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import udemy.domain.ItemPedido;
-import udemy.domain.PagamentoComBoleto;
-import udemy.domain.Pedido;
+import udemy.domain.*;
 import udemy.domain.enums.EstadoPagamento;
 import udemy.repositories.ItemPedidoRepository;
 import udemy.repositories.PagamentoRepository;
 import udemy.repositories.PedidoRepository;
+import udemy.security.UserSS;
+import udemy.services.exceptions.AuthorizationException;
 import udemy.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -66,5 +69,15 @@ public class PedidoService {
 		itemPedidoRepository.saveAll(obj.getItens());
 		System.out.println(obj);
 		return obj;
+	}
+
+	public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		UserSS user = UserService.authenticated();
+		if (user == null){
+			throw new AuthorizationException("Acesso negado.");
+		}
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+		Cliente cliente = clienteService.find(user.getId());
+		return repo.findByCliente(cliente, pageRequest);
 	}
 }
