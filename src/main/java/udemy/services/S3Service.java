@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import udemy.services.exceptions.FileException;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class S3Service {
             LOG.info("Upload finalizado.");
                 return s3client.getUrl(bucketName, fileName).toURI();
         } catch (URISyntaxException e) {
-            throw  new RuntimeException("Erro ao converter URL para URI.");
+            throw  new FileException("Erro ao converter URL para URI.");
         }
     }
 }
