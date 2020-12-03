@@ -11,8 +11,8 @@ API da aplicação de gerenciamento de Pedidos (simulando um e-commerce) desenvo
 ## Tecnologias utlizadas
 
 * Documentação com Swagger
-* Banco de dados relacional em servidor (MySQL) e memória (H2)
-* Thymeleaf para template para envio de e-mails
+* Banco de dados relacional em servidor (MySQL) e em memória (H2)
+* Thymeleaf como template para envio de e-mails
 * Segurança com Spring Security (utilizando JWT)
 * Amazon Webservices S3 para hospedagem de arquivos na nuvem
 
