@@ -10,7 +10,7 @@ API da aplicação de gerenciamento de Pedidos (simulando um e-commerce) desenvo
 
 ## Tecnologias utlizadas
 
-* Swagger
+* Documentação com Swagger
 * Banco de dados relacional em servidor (MySQL) e memória (H2)
 * Thymeleaf para template para envio de e-mails
 * Segurança com Spring Security (utilizando JWT)
