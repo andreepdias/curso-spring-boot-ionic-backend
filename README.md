@@ -1,6 +1,6 @@
 # Spring Boot e Ionic - Backend
 
-API da aplicação de gerenciamento de Pedidos (simulando um e-commerce) desenvolvida em um curso da Udemy utilizando Spring Boot e Ionic.
+API da aplicação de gerenciamento de Pedidos (simulando um e-commerce) desenvolvida em um curso da Udemy utilizando Spring Boot e Ionic. Reposiório frontend: https://github.com/andreepdias/spring-boot-ionic-frontend .
 
 ## Padrões adotados
 * Arquitetura em camadas (Controller, Service, Domain, Repository)
